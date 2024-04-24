@@ -16,6 +16,9 @@ jobs:
 
       - uses: databricks/setup-cli@main
 
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
       - run: databricks bundle deploy
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
