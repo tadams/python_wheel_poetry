@@ -4,9 +4,6 @@ bundle:
 include:
   - ./resources/job.yml
 
-workspace:
-  host: https://dbc-656bfce3-2e54.cloud.databricks.com/
-
 artifacts:
   default:
     type: whl
