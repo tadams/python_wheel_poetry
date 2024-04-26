@@ -1,3 +1,4 @@
 .databricks
 dist/
 __pycache__
+.secrets

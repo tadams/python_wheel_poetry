@@ -2,7 +2,7 @@ bundle:
   name: python_wheel_poetry
 
 include:
-  - ./resources/job.yml
+  - ./resources/job-config.yml
 
 artifacts:
   default:

@@ -1,18 +1,31 @@
+custom:
+  new_cluster: &new-cluster
+    node_type_id: {{ node_type_id }}
+    num_workers: 1
+    spark_version: 13.3.x-scala2.12
+
+  task-common-attributes: &task-common-attributes
+    max_concurrent_runs: 1
+    email_notifications:
+      on_failure: ["tcadams@yahoo.com"]
+
 resources:
   jobs:
     example_job:
-      name: "Poetry example"
+      name: job-sandbox-dev
+      <<: *task-common-attributes
       tasks:
-        - task_key: task
+        {% for task in tasks %}
+        - task_key: {{ task }}-sandbox-dev
 
-          python_wheel_task:
-            package_name: python_wheel_poetry
-            entry_point: python_wheel_poetry
+          spark_python_task:
+            python_file: ../src/python_wheel_poetry/hello.py
+            parameters: ["--{{ task }}"]
+          timeout_seconds: 1200
 
           libraries:
             - whl: ../dist/*.whl
 
           new_cluster:
-            node_type_id: i3.xlarge
-            num_workers: 1
-            spark_version: 13.3.x-scala2.12
+            <<: *new-cluster
+        {% endfor %}

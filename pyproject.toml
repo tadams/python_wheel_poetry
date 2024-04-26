@@ -12,6 +12,8 @@ python_wheel_poetry = "python_wheel_poetry.hello:hello"
 [tool.poetry.dependencies]
 python = "^3.10"
 cowsay = "^6.1"
+jinja2-cli = "^0.8.2"
+pyyaml = "^6.0.1"
 
 [build-system]
 requires = ["poetry-core"]
